@@ -29,6 +29,11 @@
 
 <button (click)="voltarParaHome()">Voltar para Home</button>
 
+<div>
+  <app-vehicle-list></app-vehicle-list>
+</div>
+
+
 <div *ngIf="veiculoSelecionado">
   <h3>Detalhes do Veículo Selecionado:</h3>
   <p><strong>Marca:</strong> {{ veiculoSelecionado.marca }}</p>

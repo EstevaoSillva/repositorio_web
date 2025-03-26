@@ -1,0 +1,127 @@
+<h2>Abastecimentos</h2>
+
+<form (ngSubmit)="criarAbastecimento()">
+  <label for="veiculo">Veículo:</label>
+  <select id="veiculo" name="veiculo" [(ngModel)]="novoAbastecimento.veiculo" required>
+    <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{ veiculo.modelo }}</option>
+  </select><br>
+
+  <label for="hodometro">Hodômetro:</label>
+  <input type="number" id="hodometro" name="hodometro" [(ngModel)]="novoAbastecimento.hodometro" required><br>
+
+  <label for="total_litros">Total de Litros:</label>
+  <input type="number" id="total_litros" name="total_litros" [(ngModel)]="novoAbastecimento.total_litros" required><br>
+
+  <label for="preco_combustivel">Preço do Combustível:</label>
+  <input type="number" id="preco_combustivel" name="preco_combustivel" [(ngModel)]="novoAbastecimento.preco_combustivel" required><br>
+
+  <label for="data_abastecimento">Data do Abastecimento:</label>
+  <input type="datetime-local" id="data_abastecimento" name="data_abastecimento" [(ngModel)]="novoAbastecimento.data_abastecimento"><br>
+
+  <button type="submit">Adicionar Abastecimento</button>
+  <button (click)="irParaHome()">Voltar para Home</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Campo</th>
+      <th *ngFor="let abastecimento of abastecimentos">Abastecimento {{ abastecimentos.indexOf(abastecimento) + 1 }}</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Veículo</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.veiculo }}</td>
+      <td>
+        <button (click)="editar(abastecimentos[0])">Editar</button>
+        <button (click)="deletarAbastecimento(abastecimentos[0].id)">Deletar</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Hodômetro</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.hodometro }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Diferença Hodômetro</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.hodometro_diferenca }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Total de Litros</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.total_litros }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Preço do Combustível</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.preco_combustivel }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Preço Total</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.preco_total }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Desempenho do Veículo</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.desempenho_veiculo }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Data do Abastecimento</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.data_abastecimento | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Dias entre Abastecimentos</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.dias_entre_abastecimentos }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Litros por Dia</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.litros_por_dia }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>KM por Dias</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.km_dias }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Total Gasto Abastecimento</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.total_gasto_abastecimento }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sugestão Próximo Abastecimento</td>
+      <td *ngFor="let abastecimento of abastecimentos">{{ abastecimento.sugestao_proximo_abastecimento }}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="editarAbastecimento.id">
+  <h2>Editar Abastecimento</h2>
+  <form (ngSubmit)="atualizarAbastecimento()">
+    <label for="veiculo">Veículo:</label>
+    <select id="veiculo" name="veiculo" [(ngModel)]="editarAbastecimento.veiculo" required>
+      <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{ veiculo.modelo }}</option>
+    </select><br>
+
+    <label for="hodometro">Hodômetro:</label>
+    <input type="number" id="hodometro" name="hodometro" [(ngModel)]="editarAbastecimento.hodometro" required><br>
+
+    <label for="total_litros">Total de Litros:</label>
+    <input type="number" id="total_litros" name="total_litros" [(ngModel)]="editarAbastecimento.total_litros" required><br>
+
+    <label for="preco_combustivel">Preço do Combustível:</label>
+    <input type="number" id="preco_combustivel" name="preco_combustivel" [(ngModel)]="editarAbastecimento.preco_combustivel" required><br>
+
+    <label for="data_abastecimento">Data do Abastecimento:</label>
+    <input type="datetime-local" id="data_abastecimento" name="data_abastecimento" [(ngModel)]="editarAbastecimento.data_abastecimento"><br>
+
+    <button type="submit">Salvar Alterações</button>
+  </form>
+</div>

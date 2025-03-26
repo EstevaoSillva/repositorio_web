@@ -1,0 +1,57 @@
+<h2>Lista de Veículos</h2>
+
+<div *ngIf="mensagemSucesso" style="color: green;">{{ mensagemSucesso }}</div>
+<div *ngIf="mensagemErro" style="color: red;">{{ mensagemErro }}</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Placa</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let veiculo of veiculos">
+      <td>{{ veiculo.marca }}</td>
+      <td>{{ veiculo.modelo }}</td>
+      <td>{{ veiculo.placa }}</td>
+      <td>
+        <button (click)="selecionarVeiculo(veiculo)">Editar</button>
+        <button (click)="excluirVeiculo(veiculo.id ?? 0)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="veiculoSelecionado">
+  <h3>Editar Veículo</h3>
+  <form (ngSubmit)="atualizarVeiculo()">
+    <div>
+      <label for="marca">Marca:</label>
+      <input type="text" id="marca" [(ngModel)]="veiculoSelecionado.marca" name="marca">
+    </div>
+    <div>
+      <label for="modelo">Modelo:</label>
+      <input type="text" id="modelo" [(ngModel)]="veiculoSelecionado.modelo" name="modelo">
+    </div>
+    <div>
+      <label for="placa">Placa:</label>
+      <input type="text" id="placa" [(ngModel)]="veiculoSelecionado.placa" name="placa">
+    </div>
+    <div>
+      <label for="ano">Ano:</label>
+      <input type="number" id="ano" [(ngModel)]="veiculoSelecionado.ano" name="ano">
+    </div>
+    <div>
+      <label for="cor">Cor:</label>
+      <input type="text" id="cor" [(ngModel)]="veiculoSelecionado.cor" name="cor">
+    </div>
+    <div>
+      <label for="capacidade_tanque">Capacidade do Tanque:</label>
+      <input type="number" id="capacidade_tanque" [(ngModel)]="veiculoSelecionado.capacidade_tanque" name="capacidade_tanque">
+    </div>
+    <button type="submit">Atualizar</button>
+  </form>
+</div>

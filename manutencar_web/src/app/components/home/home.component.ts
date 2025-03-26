@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../service/auth-service/auth.service'; 
 import { VeiculoService } from '../../service/veiculo-service/veiculo.service';
 import { HodometroComponent } from '../hodometro/hodometro.component';
+import { AbastecimentoComponent } from '../abastecimento/abastecimento.component';
 
 interface Veiculo {
   id: number;
@@ -21,7 +22,9 @@ interface Veiculo {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, HodometroComponent],
+  imports: [CommonModule, RouterModule, FormsModule, 
+    HodometroComponent, AbastecimentoComponent
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
@@ -49,24 +52,24 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  carregarVeiculos() {
-    this.veiculoService.listarVeiculosDoBanco().subscribe(
-        (veiculos) => {
-            console.log('Veículos recebidos:', veiculos);
-            const usuarioId = this.authService.getUsuarioId();
-            console.log('ID do usuário logado:', usuarioId);
-            this.veiculos = veiculos.filter(veiculo => parseInt(veiculo.usuario_id) === usuarioId);
-            console.log('Veículos filtrados:', this.veiculos);
-            if (this.veiculos.length > 0) {
-                this.veiculoSelecionado = this.veiculos[0].id;
-                console.log('Veículo selecionado:', this.veiculoSelecionado);
-            }
-        },
-        (error) => {
-            console.error('Erro ao buscar veículos:', error);
-        }
+    carregarVeiculos() {
+      this.veiculoService.listarVeiculosDoBanco().subscribe(
+      (veiculos) => {
+          console.log('Veículos recebidos:', veiculos);
+          const usuarioId = this.authService.getUsuarioId();
+          console.log('ID do usuário logado:', usuarioId);
+          this.veiculos = veiculos.filter(veiculo => parseInt(veiculo.usuario_id) === usuarioId);
+          console.log('Veículos filtrados:', this.veiculos);
+          if (this.veiculos.length > 0) {
+              this.veiculoSelecionado = this.veiculos[0].id;
+              console.log('Veículo selecionado:', this.veiculoSelecionado);
+          }
+      },
+      (error) => {
+          console.error('Erro ao buscar veículos:', error);
+      }
     );
-}
+  }
 
   onVeiculoSelecionado(event: any) {
     this.veiculoSelecionado = event.target.value;

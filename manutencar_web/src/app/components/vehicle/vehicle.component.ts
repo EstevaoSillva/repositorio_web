@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { VeiculoService } from '../../service/veiculo-service/veiculo.service';
-import { AuthService } from '../../service/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { AuthService } from '../../service/auth-service/auth.service';
+import { VeiculoService } from '../../service/veiculo-service/veiculo.service';
+import { VehicleListComponent } from '../vehicle-list/vehicle-list.component';
+import { VeiculoJsonService } from '../../service/veiculo-json/veiculojson.service';
+
 
 interface Veiculo {
   id: number;
@@ -18,7 +22,7 @@ interface Veiculo {
 @Component({
   selector: 'app-vehicle',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, VehicleListComponent],
   templateUrl: './vehicle.component.html',
   styleUrl: './vehicle.component.css'
 })
@@ -29,9 +33,12 @@ export class VehicleComponent implements OnInit {
   veiculosExistentes: Veiculo[] = [];
   veiculoSelecionado: Veiculo | undefined; 
 
+  @ViewChild(VehicleListComponent) vehicleListComponent!: VehicleListComponent;
+
   constructor(
     private fb: FormBuilder,
     private veiculoService: VeiculoService,
+    private veiculoJsonService: VeiculoJsonService,
     private router: Router,
     private authService: AuthService
   ) { }
@@ -44,7 +51,7 @@ export class VehicleComponent implements OnInit {
       ano: ['', [Validators.required, Validators.min(1886), Validators.max(new Date().getFullYear())]]
     });
 
-    this.veiculoService.listarVeiculos().subscribe(
+    this.veiculoJsonService.listarVeiculosJson().subscribe(
       (veiculos: Veiculo[]) => {
         this.veiculosExistentes = veiculos;
         // console.log(this.veiculosExistentes);
@@ -83,6 +90,7 @@ export class VehicleComponent implements OnInit {
           this.mensagemSucesso = 'Veículo cadastrado com sucesso!';
           this.mensagemErro = '';
           this.veiculoForm.reset();
+          this.vehicleListComponent.carregarVeiculos();
         },
         (error) => {
           if (error && error.error && error.error.placa) {

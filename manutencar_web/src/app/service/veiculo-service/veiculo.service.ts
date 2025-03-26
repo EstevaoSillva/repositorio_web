@@ -8,7 +8,7 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
 })
 export class VeiculoService {
   private apiUrl = 'http://127.0.0.1:8000/api/veiculos/'; 
-  private apiUrlJson = 'http://127.0.0.1:8000/api/veiculos-json/';
+
 
   constructor(
     private http: HttpClient,
@@ -25,10 +25,6 @@ export class VeiculoService {
   listarVeiculosDoBanco(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
 }
-
-  listarVeiculos(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrlJson); 
-  }
 
   cadastrarVeiculo(veiculo: any): Observable<any> {
     return this.http.post(this.apiUrl, veiculo, { headers: this.getHeaders() });
