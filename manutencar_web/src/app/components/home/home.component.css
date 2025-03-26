@@ -1,0 +1,35 @@
+.home-container {
+    display: flex;
+    height: 100vh; /* Para ocupar a altura total da tela */
+  }
+  
+  .sidebar {
+    width: 100px; /* Largura da barra de navegação */
+    background-color: #f0f0f0; /* Cor de fundo da barra de navegação */
+    padding: 20px;
+  }
+  
+  .navigation ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navigation li {
+    margin-bottom: 10px;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 12px;
+  }
+  
+  .navigation a.active {
+    background-color: #ddd; /* Cor de fundo do link ativo */
+  }
+  
+  .content {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    padding: 20px;
+  }

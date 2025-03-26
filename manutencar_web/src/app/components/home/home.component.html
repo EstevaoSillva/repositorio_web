@@ -1,0 +1,34 @@
+<div class="home-container">
+    <aside class="sidebar">
+        <nav class="navigation">
+            <ul>
+                <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/veiculos" routerLinkActive="active">Veículos</a></li>
+                <li><a (click)="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <main class="content">
+        <div *ngIf="usuario">
+          <h2>Bem-vindo, {{ usuario.nome }}!</h2>
+          <p>Email: {{ usuario.email }}</p>
+          
+          
+          <div *ngIf="veiculos.length > 0">
+            <label for="veiculoSelecionado">Veículo:</label>
+            <select id="veiculoSelecionado" [(ngModel)]="veiculoSelecionado" (change)="onVeiculoSelecionado($event)">
+              <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">
+                  {{ veiculo.marca }} {{ veiculo.modelo }} {{ veiculo.placa }} {{ veiculo.ano }}
+                </option>
+            </select>
+        </div>
+        
+        <div *ngIf="veiculoSelecionado">
+            <app-hodometro [veiculoId]="veiculoSelecionado"></app-hodometro>
+        </div>
+        
+        </div>
+      </main>
+    </div>

@@ -1,0 +1,12 @@
+<div *ngIf="hodometro">
+    <p>Hodômetro atual: {{ hodometro.hodometro }}</p>
+    <p>Quilômetro Percorrido: {{ hodometro.hodometro_diferenca }}</p>
+    <p>Data: {{ hodometro.data_registro }}</p>
+    <input type="number" [(ngModel)]="novoHodometro" placeholder="Novo hodômetro">
+    <button (click)="atualizarHodometro()">Atualizar</button>
+  </div>
+  <div *ngIf="!hodometro">
+    <p>Nenhum hodômetro registrado.</p>
+    <input type="number" [(ngModel)]="novoHodometro" placeholder="Hodômetro inicial">
+    <button (click)="criarHodometro()">Criar Hodômetro</button>
+  </div>
