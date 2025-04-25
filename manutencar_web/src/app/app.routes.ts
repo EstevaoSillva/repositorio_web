@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { AbastecimentoComponent } from './components/abastecimento/abastecimento.component';
+import { AbastecimentoPaiComponent } from './components/abastecimento-pai/abastecimento-pai.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'veiculos', component: VehicleComponent },
   { path: 'veiculos-list', component: VehicleListComponent },
   { path: 'abastecimento', component: AbastecimentoComponent },
+  { path: 'abastecimento-pai', component: AbastecimentoPaiComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

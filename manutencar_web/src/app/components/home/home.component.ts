@@ -2,11 +2,12 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Importe o módulo
+import { faHome, faCar, faGasPump, faSignOutAlt, faUser, faChevronDown } from '@fortawesome/free-solid-svg-icons'; // Importe os ícones
 
 import { AuthService } from '../../service/auth-service/auth.service'; 
 import { VeiculoService } from '../../service/veiculo-service/veiculo.service';
 import { HodometroComponent } from '../hodometro/hodometro.component';
-import { AbastecimentoComponent } from '../abastecimento/abastecimento.component';
 
 interface Veiculo {
   id: number;
@@ -23,7 +24,7 @@ interface Veiculo {
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule, 
-    HodometroComponent, AbastecimentoComponent
+    HodometroComponent, FontAwesomeModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -32,6 +33,12 @@ export class HomeComponent implements OnInit {
   usuario: any;
   veiculos: Veiculo[] = [];
   veiculoSelecionado: number | undefined;
+  faHome = faHome; 
+  faCar = faCar;
+  faGasPump = faGasPump;
+  faSignOutAlt = faSignOutAlt;
+  faUser = faUser;
+  faChevronDown = faChevronDown;
 
   constructor(
     private authService: AuthService,

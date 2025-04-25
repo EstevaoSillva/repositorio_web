@@ -1,0 +1,5 @@
+<h2>Selecione o Veículo</h2>
+<select [(ngModel)]="veiculoSelecionado" (ngModelChange)="onVeiculoChange()">
+  <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{ veiculo.modelo }}</option>
+</select>
+<app-abastecimento [veiculoId]="veiculoSelecionado"></app-abastecimento>

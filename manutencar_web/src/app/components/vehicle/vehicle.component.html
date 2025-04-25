@@ -1,45 +1,51 @@
-<h2>Cadastro de Veículo</h2>
-
-<form [formGroup]="veiculoForm" (ngSubmit)="cadastrarVeiculo()">
-  <div>
-    <label for="veiculo_selecionado">Selecione um veículo:</label>
-    <select id="veiculo_selecionado" formControlName="veiculo_selecionado">
-      <option value="">Selecione um veículo</option>
-      <option *ngFor="let veiculo of veiculosExistentes" [value]="veiculo.id">{{ veiculo.marca }} {{ veiculo.modelo }} - {{ veiculo.placa }}</option>
-    </select>
-  </div>
-  <div>
-    <label for="placa">Placa:</label>
-    <input type="text" id="placa" formControlName="placa">
-  </div>
-  <div>
-    <label for="cor">Cor:</label>
-    <input type="text" id="cor" formControlName="cor">
-  </div>
-  <div>
-    <label for="ano">Ano:</label>
-    <input type="number" id="ano" formControlName="ano">
-  </div>
-
-  <button type="submit">Cadastrar</button>
-</form>
-
-<div *ngIf="mensagemSucesso" style="color: green;">{{ mensagemSucesso }}</div>
-<div *ngIf="mensagemErro" style="color: red;">{{ mensagemErro }}</div>
-
-<button (click)="voltarParaHome()">Voltar para Home</button>
-
-<div>
-  <app-vehicle-list></app-vehicle-list>
-</div>
-
-
-<div *ngIf="veiculoSelecionado">
-  <h3>Detalhes do Veículo Selecionado:</h3>
-  <p><strong>Marca:</strong> {{ veiculoSelecionado.marca }}</p>
-  <p><strong>Modelo:</strong> {{ veiculoSelecionado.modelo }}</p>
-  <p><strong>Placa:</strong> {{ veiculoSelecionado.placa }}</p>
-  <p><strong>Ano:</strong> {{ veiculoSelecionado.ano }}</p>
-  <p><strong>Cor:</strong> {{ veiculoSelecionado.cor }}</p>
-  <p><strong>Capacidade do Tanque:</strong> {{ veiculoSelecionado.capacidade_tanque }}</p>
+<div class="page-container">
+  <aside class="sidebar">
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/veiculos" routerLinkActive="active">Veículos</a></li>
+        <li><a routerLink="/abastecimento-pai" routerLinkActive="active">Abastecimento</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="content">
+    <h2>Cadastro de Veículo</h2>
+    <form [formGroup]="veiculoForm" (ngSubmit)="cadastrarVeiculo()">
+      <div class="form-group">
+        <label for="veiculo_selecionado">Selecione um veículo:</label>
+        <select id="veiculo_selecionado" formControlName="veiculo_selecionado">
+          <option value="">Selecione um veículo</option>
+          <option *ngFor="let veiculo of veiculosExistentes" [value]="veiculo.id">{{ veiculo.marca }} {{ veiculo.modelo }} - {{ veiculo.placa }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="placa">Placa:</label>
+        <input type="text" id="placa" formControlName="placa">
+      </div>
+      <div class="form-group">
+        <label for="cor">Cor:</label>
+        <input type="text" id="cor" formControlName="cor">
+      </div>
+      <div class="form-group">
+        <label for="ano">Ano:</label>
+        <input type="number" id="ano" formControlName="ano">
+      </div>
+      <button type="submit" class="submit-button">Cadastrar</button>
+    </form>
+    <div *ngIf="mensagemSucesso" class="success-message">{{ mensagemSucesso }}</div>
+    <div *ngIf="mensagemErro" class="error-message">{{ mensagemErro }}</div>
+    <button (click)="voltarParaHome()" class="back-button">Voltar para Home</button>
+    <div class="vehicle-list-container">
+      <app-vehicle-list></app-vehicle-list>
+    </div>
+    <div *ngIf="veiculoSelecionado" class="vehicle-details">
+      <h3>Detalhes do Veículo Selecionado:</h3>
+      <p><strong>Marca:</strong> {{ veiculoSelecionado.marca }}</p>
+      <p><strong>Modelo:</strong> {{ veiculoSelecionado.modelo }}</p>
+      <p><strong>Placa:</strong> {{ veiculoSelecionado.placa }}</p>
+      <p><strong>Ano:</strong> {{ veiculoSelecionado.ano }}</p>
+      <p><strong>Cor:</strong> {{ veiculoSelecionado.cor }}</p>
+      <p><strong>Capacidade do Tanque:</strong> {{ veiculoSelecionado.capacidade_tanque }}</p>
+    </div>
+  </main>
 </div>

@@ -1,11 +1,4 @@
-<h2>Abastecimentos</h2>
-
 <form (ngSubmit)="criarAbastecimento()">
-  <label for="veiculo">Veículo:</label>
-  <select id="veiculo" name="veiculo" [(ngModel)]="novoAbastecimento.veiculo" required>
-    <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{ veiculo.modelo }}</option>
-  </select><br>
-
   <label for="hodometro">Hodômetro:</label>
   <input type="number" id="hodometro" name="hodometro" [(ngModel)]="novoAbastecimento.hodometro" required><br>
 

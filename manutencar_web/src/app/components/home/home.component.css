@@ -1,35 +1,187 @@
 .home-container {
-    display: flex;
-    height: 100vh; /* Para ocupar a altura total da tela */
-  }
-  
-  .sidebar {
-    width: 100px; /* Largura da barra de navegação */
-    background-color: #f0f0f0; /* Cor de fundo da barra de navegação */
-    padding: 20px;
-  }
-  
-  .navigation ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .navigation li {
-    margin-bottom: 10px;
-  }
-  
-  .navigation a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 8px 12px;
-  }
-  
-  .navigation a.active {
-    background-color: #ddd; /* Cor de fundo do link ativo */
-  }
-  
-  .content {
-    flex-grow: 1; /* Ocupa o espaço restante */
-    padding: 20px;
-  }
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: white;
+  border-right: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.sidebar .user-profile {
+  background-color: #f0f8ff;
+  border: 1px solid #add8e6;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar .user-profile .flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar .user-profile .user-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background-color: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar .user-profile .user-icon img {
+  width: 1rem;
+  height: 1rem;
+  color: #2563eb;
+}
+
+.sidebar .user-profile .user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar .user-profile .user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar .user-profile .user-email {
+  font-size: 0.75rem;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar .navigation ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .navigation li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar .navigation a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: #374151;
+  text-decoration: none;
+}
+
+.sidebar .navigation a.active,
+.sidebar .navigation a:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.sidebar .navigation a img {
+  width: 1rem;
+  height: 1rem;
+  color: #2563eb;
+}
+
+.sidebar .navigation .logout-link {
+  color: #dc2626;
+  margin-top: 1rem;
+}
+
+.sidebar .navigation .logout-link img {
+  color: #dc2626;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.content .vehicle-selection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.content .vehicle-selection-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.content .vehicle-selection-header img {
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+}
+
+.content .vehicle-selection select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.content .vehicle-selection .select-wrapper {
+  position: relative;
+}
+
+.content .vehicle-selection .select-wrapper img {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.content .hodometro-section {
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.content .hodometro-section p {
+  margin-bottom: 0.5rem;
+}
+
+.content .hodometro-section .update-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.content .hodometro-section input {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.content .hodometro-section button {
+  padding: 0.5rem 1rem;
+  background-color: #f0f8ff;
+  border: 1px solid #add8e6;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}

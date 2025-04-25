@@ -1,6 +1,13 @@
-<form (ngSubmit)="login()">
-  <input type="email" [(ngModel)]="credentials.email" name="email" placeholder="Email" /><br />
-  <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Password" /><br />
-  <button type="submit">Login</button>
-</form>
-<a (click)="navigateToRegister()">Register</a>
+<div class="login-container">
+  <div class="image-container">
+    <img id ="login-image" src="/assets/images/login3.png" alt="Imagem de Login" class="login-image">
+  </div>
+  <div class="login-form">
+    <form (ngSubmit)="login()">
+      <input type="email" [(ngModel)]="credentials.email" name="email" placeholder="Email" /><br />
+      <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Password" /><br />
+      <button type="submit">Login</button>
+    </form>
+    <a (click)="navigateToRegister()" style="cursor: pointer;">Register</a>
+  </div>
+</div>

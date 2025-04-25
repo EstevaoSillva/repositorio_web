@@ -1,35 +1,58 @@
 <div class="home-container">
-    <aside class="sidebar">
-        <nav class="navigation">
-            <ul>
-                <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-                <li><a routerLink="/veiculos" routerLinkActive="active">Veículos</a></li>
-                <li><a routerLink="/abastecimento" routerLinkActive="active">Abastecimento</a></li>
-                <li><a (click)="logout()">Logout</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-
-    <main class="content">
-        <div *ngIf="usuario">
-          <h2>Bem-vindo, {{ usuario.nome }}!</h2>
-          <p>Email: {{ usuario.email }}</p>
-          
-          
-          <div *ngIf="veiculos.length > 0">
-            <label for="veiculoSelecionado">Veículo:</label>
-            <select id="veiculoSelecionado" [(ngModel)]="veiculoSelecionado" (change)="onVeiculoSelecionado($event)">
-              <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">
-                  {{ veiculo.marca }} {{ veiculo.modelo }} {{ veiculo.placa }} {{ veiculo.ano }}
-                </option>
-            </select>
+  <aside class="sidebar">
+    <div class="user-profile">
+      <div class="flex">
+        <div class="user-icon">
+          <fa-icon [icon]="faUser"></fa-icon>
         </div>
-        
-        <div *ngIf="veiculoSelecionado">
-            <app-hodometro [veiculoId]="veiculoSelecionado"></app-hodometro>
+        <div class="user-info">
+          <p class="user-name">{{ usuario?.nome }}</p>
+          <p class="user-email">{{ usuario?.email }}</p>
         </div>
-        
-        </div>
-      </main>
+      </div>
     </div>
+    <nav class="navigation">
+      <ul>
+        <li>
+          <a routerLink="/home" routerLinkActive="active">
+            <fa-icon [icon]="faHome"></fa-icon> Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="/veiculos" routerLinkActive="active">
+            <fa-icon [icon]="faCar"></fa-icon> Veículos
+          </a>
+        </li>
+        <li>
+          <a routerLink="/abastecimento-pai" routerLinkActive="active">
+            <fa-icon [icon]="faGasPump"></fa-icon> Abastecimento
+          </a>
+        </li>
+        <li>
+          <a (click)="logout()" class="logout-link">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon> Sair
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="content">
+    <div class="vehicle-selection-header">
+      <h2>Selecione um Veículo</h2>
+      <fa-icon [icon]="faCar"></fa-icon>
+    </div>
+    <div class="vehicle-selection">
+      <div class="select-wrapper">
+        <select id="veiculoSelecionado" [(ngModel)]="veiculoSelecionado" (change)="onVeiculoSelecionado($event)">
+          <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">
+            {{ veiculo.marca }} {{ veiculo.modelo }} {{ veiculo.placa }} {{ veiculo.ano }}
+          </option>
+        </select>
+        <fa-icon [icon]="faChevronDown"></fa-icon>
+      </div>
+    </div>
+    <div *ngIf="veiculoSelecionado" class="hodometro-section">
+      <app-hodometro [veiculoId]="veiculoSelecionado"></app-hodometro>
+    </div>
+  </main>
+</div>

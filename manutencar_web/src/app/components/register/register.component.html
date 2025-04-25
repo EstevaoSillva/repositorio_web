@@ -1,14 +1,27 @@
-<form (ngSubmit)="register()">
-    <input type="text" [(ngModel)]="userData.username" name="username" placeholder="Username" /><br />
-    <input type="email" [(ngModel)]="userData.email" name="email" placeholder="Email" /><br />
-    <input type="password" [(ngModel)]="userData.password" name="password" placeholder="Password" /><br />
-    <input
-      type="password"
-      [(ngModel)]="userData.confirmacao_senha"
-      name="confirmacao_senha"
-      placeholder="Confirmar Senha"
-    /><br />
-    <button type="submit">Register</button>
-  </form>
-  <a (click)="navigateToLogin()">Login</a>
-  <p style="color: red;">{{ mensagemErro }}</p>
+  <div class="register-container">
+    <div class="register-form">
+      <h2>Register</h2>
+      <form (ngSubmit)="register()">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="userData.username" name="username" placeholder="Username" />
+        </div>
+        <div class="form-group">
+          <input type="email" [(ngModel)]="userData.email" name="email" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input type="password" [(ngModel)]="userData.password" name="password" placeholder="Password" />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            [(ngModel)]="userData.confirmacao_senha"
+            name="confirmacao_senha"
+            placeholder="Confirmar Senha"
+          />
+        </div>
+        <button type="submit" class="register-button">Register</button>
+      </form>
+      <a (click)="navigateToLogin()" class="login-link">Login</a>
+      <p style="color: red;">{{ mensagemErro }}</p>
+    </div>
+  </div>
